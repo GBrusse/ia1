@@ -49,9 +49,6 @@ public class Parser {
 			NodeFact fact = parseFact();
 			return new NodeFactNeg(fact);
 		}
-		if (curr().equals(new Token("+"))) {
-			match("+");
-		}
 		if (curr().equals(new Token("("))) {
 			match("(");
 			NodeExpr expr = parseExpr();
