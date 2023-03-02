@@ -117,18 +117,18 @@ public class Scanner {
 	}
 
 	private void nextOp() {
-		int old=pos;
-		pos=old+2;
+		int old = pos;
+		pos = old + 2;
 		if (!done()) {
-			String lexeme=program.substring(old,pos);
+			String lexeme = program.substring(old,pos);
 			if (operators.contains(lexeme)) {
-				token=new Token(lexeme); // two-char operator
+				token = new Token(lexeme); // two-char operator
 				return;
 			}
 		}
-		pos=old+1;
-		String lexeme=program.substring(old,pos);
-		token=new Token(lexeme); // one-char operator
+		pos = old+1;
+		String lexeme = program.substring(old,pos);
+		token = new Token(lexeme); // one-char operator
 	}
 
 	// This method determines the kind of the next token (e.g., "id"),
@@ -136,23 +136,27 @@ public class Scanner {
 	public boolean next() {
 		many(whitespace);
 		if (done()) {
-			token=new Token("EOF");
+			token = new Token("EOF");
 			return false;
 		}
-		String c=program.charAt(pos)+"";
-		if (digits.contains(c))
+		String c = program.charAt(pos) + "";
+		if (c.equals("#")) {
+			past('\n');
+			return next();
+		} else if (digits.contains(c)) {
 			nextNumber();
-		else if (letters.contains(c))
+		} else if (letters.contains(c)) {
 			nextKwId();
-		else if (operators.contains(c))
+		} else if (operators.contains(c)) {
 			nextOp();
-		else {
-			System.err.println("illegal character at position "+pos);
+		} else {
+			System.err.println("illegal character at position " + pos);
 			pos++;
 			return next();
 		}
 		return true;
 	}
+
 
 	// This method scans the next lexeme,
 	// if the current token is the expected token.
