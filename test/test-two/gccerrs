@@ -1,0 +1,4 @@
+test-two/gen.c: In function 'main':
+test-two/gen.c:3:10: warning: variable 'y' set but not used [-Wunused-but-set-variable]
+    3 |   int x, y;
+      |          ^
