@@ -16,14 +16,14 @@ import java.util.HashMap;
 // and elsewhere.
 
 public class Environment {
-	private HashMap<String, Integer> map;
+	private HashMap<String, Double> map;
 
 	public Environment() {
-		this.map = new HashMap<String, Integer>();
+		this.map = new HashMap<String, Double>();
 	}
 
-	public int put(String var, int val) {
-		Integer result = this.map.put(var, new Integer(val));
+	public double put(String var, double val) {
+		Double result = this.map.put(var, new Double(val));
 
 		if (result == null) {
 			return 0;
@@ -32,8 +32,8 @@ public class Environment {
 		}		
 	}
 
-	public int get(int pos, String var) throws EvalException {
-		Integer result = this.map.get(var);
+	public double get(int pos, String var) throws EvalException {
+		Double result = this.map.get(var);
 
 		if (result == null) {
 			throw new EvalException(pos, var);

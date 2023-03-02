@@ -6,7 +6,7 @@ import java.util.*;
 public class Scanner {
 
 	private String program;		// source program being interpreted
-	private int pos;			// index of next char in program
+	private int pos;			// index of next char in program. Stays an int.
 	private Token token;		// last/current scanned token
 
 	// sets of various characters and lexemes
@@ -103,9 +103,13 @@ public class Scanner {
 	// scan various kinds of lexeme
 
 	private void nextNumber() {
-		int old=pos;
+		int old = pos;
 		many(digits);
-		token=new Token("num",program.substring(old,pos));
+		if (!done() && program.charAt(pos) == '.') {
+			pos++;
+			many(digits);
+		}
+		token = new Token("num", program.substring(old, pos));
 	}
 
 	private void nextKwId() {

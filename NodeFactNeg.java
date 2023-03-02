@@ -7,7 +7,7 @@ public class NodeFactNeg extends NodeFact {
         this.fact = fact;
     }
 
-	public int eval(Environment env) throws EvalException {
+	public double eval(Environment env) throws EvalException {
 		return -this.fact.eval(env);
 	}
 
