@@ -1,15 +1,17 @@
-stmt  : assn ';'
-assn  : id '=' expr
+stmt  : assn ’;’
+assn  : id ’=’ expr
 expr  : term addop expr
       | term
 term  : fact mulop term
       | fact
-fact  : '-' fact
-      | id 
+fact  : id
+      | unary fact
       | num
-      | '(' expr ')'
-addop : '+'
+      | ’(’ expr ’)’
+unary : '+'
       | '-'
-mulop : '*'
-      | '/'
+addop : ’+’
+      | ’-’
+mulop : ’*’
+      | ’/’
       
